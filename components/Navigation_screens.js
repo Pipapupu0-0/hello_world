@@ -3,15 +3,39 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './screens/Home_screen';
 import ProfileScreen from './screens/Profile_screen';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
+const HomeStack =  createNativeStackNavigator();
+
+function HomeStackScreen() {
+    return(
+        <HomeStack.Navigator>
+            <HomeStack.Screen name="Home" component={HomeScreen} />
+            <HomeStack.Screen name="Профиль" component={ProfileScreen} />
+        </HomeStack.Navigator>
+    );
+}
+
+const ProfileStack = createNativeStackNavigator();
+
+function ProfileStackScreen() {
+    return (
+        <ProfileStack.Navigator>
+            <ProfileStack.Screen name="Профиль" component={ProfileScreen} />
+            <ProfileStack.Screen name="Home" component={HomeScreen} />
+        </ProfileStack.Navigator>
+    );
+}
 
 export default function MyStack () {
-    const Stack = createNativeStackNavigator();
+    const Tab = createBottomTabNavigator();
+
     return(
         <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name='Home' component={HomeScreen} options={{title: 'Добро пожаловать!'}}/>
-                <Stack.Screen name='Профиль' component={ProfileScreen}/>
-            </Stack.Navigator>
+            <Tab.Navigator screenOptions={{ headerShown: false }}>
+                <Tab.Screen name="Home" component={HomeStackScreen} />
+                <Tab.Screen name="Profile" component={ProfileStackScreen} />
+            </Tab.Navigator>
         </NavigationContainer>
     );
 };
