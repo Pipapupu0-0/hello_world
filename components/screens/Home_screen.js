@@ -17,7 +17,7 @@ export default function HomeScreen({navigation}) {
             }}/>
         </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     input: {
