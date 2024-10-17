@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './screens/Home_screen';
 import ProfileScreen from './screens/Profile_screen';
+import ItemScreen from './screens/Item_scrreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const HomeStack =  createNativeStackNavigator();
@@ -12,6 +13,7 @@ function HomeStackScreen() {
         <HomeStack.Navigator>
             <HomeStack.Screen name="Home" component={HomeScreen} />
             <HomeStack.Screen name="Профиль" component={ProfileScreen} />
+            <HomeStack.Screen name="Item" component={ItemScreen} />
         </HomeStack.Navigator>
     );
 }
@@ -23,6 +25,7 @@ function ProfileStackScreen() {
         <ProfileStack.Navigator>
             <ProfileStack.Screen name="Профиль" component={ProfileScreen} />
             <ProfileStack.Screen name="Home" component={HomeScreen} />
+            <ProfileStack.Screen name="Item" component={ItemScreen}/>
         </ProfileStack.Navigator>
     );
 }
