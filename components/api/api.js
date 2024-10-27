@@ -1,0 +1,1 @@
+export const URL = "https://www.weatherapi.com/docs/weather_conditions.json"

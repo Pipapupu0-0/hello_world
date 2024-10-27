@@ -2,17 +2,19 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import { changeName } from '../reducers/action';
 import {Button, View, TextInput, StyleSheet, FlatList, Text} from 'react-native';
+import {URL} from '../api/api'
 
 
 export default function HomeScreen({navigation}) {
     const [weather, setWeather] = useState([])
+    const [name, setName] = useState("");
+    const dispatch = useDispatch();
+
     useEffect(() => {
         getWeather();
     }, []);
 
     const getWeather = () => {
-        const URL = "https://www.weatherapi.com/docs/weather_conditions.json";
-
         fetch(URL)
             .then(res => {
                 return res.json();
@@ -23,18 +25,24 @@ export default function HomeScreen({navigation}) {
             });
     };
     
-
-    const [name, setName] = useState("");
-    const dispatch = useDispatch();
-
     return (
         <View>
-            <TextInput value={name} onChangeText={setName} style={styles.input} placeholder='введите свой ник)'/>
-            <Button title='Ок'  color='lightblue' onPress={() => {
+            <TextInput 
+            value={name} 
+            onChangeText={setName} 
+            style={styles.input} 
+            placeholder='введите свой ник)'
+            />
+            <Button 
+            title='Ок'  
+            color='lightblue' 
+            onPress={() => {
                 dispatch(changeName(name));
                 navigation.navigate('Профиль');
             }}/>
-            <FlatList data={weather} renderItem={({ item }) => (
+            <FlatList 
+            data={weather} 
+            renderItem={({ item }) => (
                 <View>
                     <Text style={styles.text}>Day: {item.day} | Night: {item.night}</Text>
                 </View>
